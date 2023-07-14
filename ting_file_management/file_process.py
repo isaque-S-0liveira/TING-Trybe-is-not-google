@@ -1,3 +1,5 @@
+import sys
+
 from ting_file_management.file_management import txt_importer
 from ting_file_management.queue import Queue
 
@@ -26,5 +28,11 @@ def remove(instance: Queue):
         print("Não há elementos")
 
 
-def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+def file_metadata(instance: Queue, position):
+    try:
+        inf = instance.search(position)
+        print(inf)
+        return inf
+    except IndexError:
+        print("Posição inválida", file=sys.stderr)
+        return None
